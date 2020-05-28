@@ -18,7 +18,7 @@ export class ProductosService {
 
   private cargarProductos(){
 
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       this.http.get('https://angular-html-84e3c.firebaseio.com/productos_idx.json')
       .subscribe((resp: Producto[]) => {
         this.productos = resp;
@@ -35,8 +35,8 @@ export class ProductosService {
 
     buscarProducto( termino: string){
 
-      if(this.productos.length === 0){
-        this.cargarProductos().then(()=>{
+      if ( this.productos.length === 0 ) {
+        this.cargarProductos().then(() => {
           this.filtrarProductos(termino);
         });
       }else{
@@ -50,7 +50,7 @@ export class ProductosService {
       termino = termino.toLowerCase();
       this.productos.forEach(prod => {
         const tituloLower = prod.titulo.toLowerCase();
-        if (prod.categoria.indexOf(termino) >= 0 ||tituloLower.indexOf(termino)){
+        if (prod.categoria.indexOf(termino) >= 0 || tituloLower.indexOf(termino)){
           this.productosFiltrado.push(prod);
         }
       });
